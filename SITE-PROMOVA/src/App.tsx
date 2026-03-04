@@ -1,11 +1,15 @@
-
+import Navbar from './components/layout/Navbar'
+import Hero from './components/sections/Hero'
+import Services from './components/sections/Services'
 
 function App() {
-
   return (
     <>
-        <h1 className="text-3xl font-bold underline bg-blue-500">Promova</h1>
-        <p className="text-xl">Promova</p>
+      <Navbar />
+      <main>
+        <Hero />
+        <Services />
+      </main>
     </>
   )
 }
