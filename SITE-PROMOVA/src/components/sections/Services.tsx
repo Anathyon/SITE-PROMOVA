@@ -49,14 +49,14 @@ const Services: React.FC = () => {
   return (
     <section 
       id="services" 
-      className="bg-dark-lighter relative overflow-hidden"
+      className="bg-dark-lighter relative overflow-hidden flex flex-col items-center w-full"
       style={{ 
         paddingTop: isMobile ? '4rem' : '8rem', 
         paddingBottom: isMobile ? '4rem' : '8rem' 
       }}
     >
       <div 
-        className="max-w-7xl mx-auto"
+        className="max-w-7xl mx-auto w-full flex flex-col items-center"
         style={{ 
           paddingLeft: isMobile ? '1rem' : '1.5rem', 
           paddingRight: isMobile ? '1rem' : '1.5rem' 
@@ -91,7 +91,7 @@ const Services: React.FC = () => {
         </div>
 
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full justify-items-center"
           style={{ gap: isMobile ? '1.5rem' : '2rem' }}
         >
           {services.map((service, index) => (
@@ -102,7 +102,7 @@ const Services: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               whileHover={{ y: -8 }}
-              className="group rounded-[32px] bg-dark border border-white/5 hover:border-white/10 transition-all duration-500 relative overflow-hidden"
+              className="group rounded-[32px] bg-dark border border-white/5 hover:border-white/10 transition-all duration-500 relative overflow-hidden flex flex-col items-center text-center"
               style={{ padding: isMobile ? '1.5rem' : '2rem' }}
             >
               {/* Hover Gradient Background */}
