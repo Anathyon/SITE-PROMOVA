@@ -25,3 +25,9 @@ export interface Stat {
   label: string;
   value: string;
 }
+
+export interface ContactInfo {
+  label: string;
+  value: string;
+  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
+}

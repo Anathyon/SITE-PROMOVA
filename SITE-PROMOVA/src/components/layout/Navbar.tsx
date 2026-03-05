@@ -18,9 +18,9 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Início', href: '#home' },
+    { name: 'Sobre', href: '#about' },
     { name: 'Serviços', href: '#services' },
     { name: 'Portfólio', href: '#portfolio' },
-    { name: 'Sobre', href: '#about' },
     { name: 'Contato', href: '#contact' },
   ];
 
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
             className="font-black tracking-tighter rainbow-text"
             style={{ fontSize: isMobile ? '1.25rem' : '1.875rem' }}
           >
-            PROMOVA
+            PROMOVA PRODUÇÕES
           </span>
         </a>
 

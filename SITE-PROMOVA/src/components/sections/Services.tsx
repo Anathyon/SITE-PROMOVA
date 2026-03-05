@@ -17,7 +17,7 @@ const Services: React.FC = () => {
       }}
     >
       <div 
-        className="max-w-7xl mx-auto w-full flex flex-col items-center"
+        className="max-w-[80%] mx-auto w-full flex flex-col items-center"
         style={{ 
           paddingLeft: isMobile ? '1rem' : '1.5rem', 
           paddingRight: isMobile ? '1rem' : '1.5rem' 
