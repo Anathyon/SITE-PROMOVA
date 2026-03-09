@@ -1,7 +1,9 @@
-import React from 'react';
 import { Instagram, Facebook, Youtube, Linkedin } from 'lucide-react';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 const Footer: React.FC = () => {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -27,12 +29,34 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-dark-lighter pt-24 pb-12 border-t border-white/5" aria-labelledby="footer-heading">
+    <footer 
+      className="bg-dark-lighter border-t border-white/5" 
+      aria-labelledby="footer-heading"
+      style={{ 
+        paddingTop: isMobile ? '4rem' : '6rem', 
+        paddingBottom: isMobile ? '2.5rem' : '3rem' 
+      }}
+    >
       <h2 id="footer-heading" className="sr-only">Rodapé</h2>
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+      <div 
+        className="max-w-7xl mx-auto"
+        style={{ 
+          paddingLeft: isMobile ? '1.5rem' : '3rem', 
+          paddingRight: isMobile ? '1.5rem' : '3rem' 
+        }}
+      >
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+          style={{ 
+            gap: isMobile ? '3rem' : '4rem', 
+            marginBottom: isMobile ? '4rem' : '5rem' 
+          }}
+        >
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-5 mb-8">
+            <div 
+              className="flex items-center"
+              style={{ gap: '1.25rem', marginBottom: '2rem' }}
+            >
               <img 
                 src="/assets/icons/icon-promova.png" 
                 alt="Promova Logo" 
@@ -41,11 +65,14 @@ const Footer: React.FC = () => {
               />
               <span className="text-2xl font-black tracking-tighter rainbow-text">PROMOVA</span>
             </div>
-            <p className="text-white/30 max-w-sm mb-10 leading-relaxed text-base font-medium">
+            <p 
+              className="text-white/30 max-w-sm leading-relaxed text-base font-medium"
+              style={{ marginBottom: '2.5rem' }}
+            >
               Especialistas em transformar ideias em narrativas visuais de alto impacto. 
               Sua marca merece ser promovida com excelência.
             </p>
-            <div className="flex gap-5">
+            <div className="flex" style={{ gap: '1.25rem' }}>
               {socialLinks.map(({ Icon, href, label }, i) => (
                 <a
                   key={i}
@@ -62,13 +89,20 @@ const Footer: React.FC = () => {
           </div>
 
           <nav aria-labelledby="quick-links-heading">
-            <h4 id="quick-links-heading" className="text-white font-black mb-8 uppercase tracking-[0.3em] text-[9px]">Links Rápidos</h4>
-            <ul className="space-y-5">
+            <h4 
+              id="quick-links-heading" 
+              className="text-white font-black uppercase tracking-[0.3em] text-[9px]"
+              style={{ marginBottom: '2rem' }}
+            >
+              Links Rápidos
+            </h4>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a 
                     href={link.href} 
-                    className="text-white/30 hover:text-white transition-all text-[11px] font-bold uppercase tracking-widest block py-1"
+                    className="text-white/30 hover:text-white transition-all text-[11px] font-bold uppercase tracking-widest block"
+                    style={{ paddingTop: '0.25rem', paddingBottom: '0.25rem' }}
                   >
                     {link.name}
                   </a>
@@ -78,26 +112,39 @@ const Footer: React.FC = () => {
           </nav>
 
           <nav aria-labelledby="legal-links-heading">
-            <h4 id="legal-links-heading" className="text-white font-black mb-8 uppercase tracking-[0.3em] text-[9px]">Legal</h4>
-            <ul className="space-y-5">
+            <h4 
+              id="legal-links-heading" 
+              className="text-white font-black uppercase tracking-[0.3em] text-[9px]"
+              style={{ marginBottom: '2rem' }}
+            >
+              Legal
+            </h4>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               {legalLinks.map((link) => (
                 <li key={link.name}>
                   <a 
                     href={link.href} 
-                    className="text-white/30 hover:text-white transition-all text-[11px] font-bold uppercase tracking-widest block py-1"
+                    className="text-white/30 hover:text-white transition-all text-[11px] font-bold uppercase tracking-widest block"
+                    style={{ paddingTop: '0.25rem', paddingBottom: '0.25rem' }}
                   >
                     {link.name}
                   </a>
                 </li>
               ))}
-              <li className="text-white/20 text-[9px] font-black uppercase tracking-widest pt-3">
+              <li 
+                className="text-white/20 text-[9px] font-black uppercase tracking-widest"
+                style={{ paddingTop: '0.75rem' }}
+              >
                 CNPJ: 13.898.791/0001-60
               </li>
             </ul>
           </nav>
         </div>
 
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div 
+          className="border-t border-white/5 flex flex-col md:flex-row justify-between items-center"
+          style={{ paddingTop: '2.5rem', gap: '1.5rem' }}
+        >
           <p className="text-white/20 text-[9px] font-black uppercase tracking-[0.2em]">
             © {currentYear} Promova Produções. Todos os direitos reservados.
           </p>
