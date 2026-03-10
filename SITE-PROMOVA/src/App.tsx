@@ -5,6 +5,7 @@ import Services from './components/sections/Services'
 import Portfolio from './components/sections/Portfolio'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
+import CTA from './components/sections/CTA'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <About />
         <Services />
         <Portfolio />
+        <CTA />
         <Contact />
       </main>
       <Footer />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 import { useWindowSize } from '../../hooks/useWindowSize';
@@ -7,6 +7,14 @@ import { stats, highlights } from '../../data/about';
 const About: React.FC = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;
+  const [animationCount, setAnimationCount] = useState(0);
+
+  // Stop animations after 2 cycles on mobile
+  const shouldAnimate = !isMobile || animationCount < 2;
+
+  const handleAnimationComplete = () => {
+    if (isMobile) setAnimationCount(prev => prev + 1);
+  };
 
   return (
     <section 
@@ -29,9 +37,11 @@ const About: React.FC = () => {
           style={{ gap: isMobile ? '3rem' : '5rem' }}
         >
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={shouldAnimate ? { opacity: 0, x: -40 } : undefined}
+            whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
+            whileHover={!isMobile ? { scale: 1.02 } : {}}
+            onAnimationComplete={handleAnimationComplete}
+            viewport={{ once: false, amount: 0.8 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as any }}
             className="relative"
           >
@@ -48,11 +58,11 @@ const About: React.FC = () => {
             <div className="absolute -bottom-16 -right-16 w-56 h-56 bg-rainbow-gradient opacity-[0.04] blur-[80px] rounded-full animate-float delay-1000"></div>
             
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, scale: 0.9 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, scale: 1 } : undefined}
+              viewport={{ once: false }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="absolute glass rounded-[32px] border border-white/5 hidden md:block"
+              className="absolute glass rounded-[32px] border border-white/5 hidden md:block cursor-default"
               style={{
                 bottom: '-2rem',
                 left: '-2rem',
@@ -72,16 +82,11 @@ const About: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as any }}
-          >
+          <div>
             <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false, amount: 0.8 }}
               className="font-black tracking-tighter uppercase leading-[0.95]"
               style={{ 
                 fontSize: isMobile ? '2.5rem' : '3.75rem',
@@ -89,12 +94,12 @@ const About: React.FC = () => {
               }}
             >
               PAIXÃO POR <br />
-              <span className="rainbow-text">CONTAR HISTÓRIAS</span>
+              <span className={`rainbow-text ${shouldAnimate ? 'animate-rainbow' : ''}`}>CONTAR HISTÓRIAS</span>
             </motion.h2>
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false, amount: 0.8 }}
               transition={{ delay: 0.2 }}
               className="text-white/40 leading-relaxed font-medium"
               style={{ 
@@ -114,11 +119,12 @@ const About: React.FC = () => {
               {highlights.map((item, i) => (
                 <motion.div 
                   key={item}
-                  initial={{ opacity: 0, x: 15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  initial={shouldAnimate ? { opacity: 0, x: 15 } : undefined}
+                  whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
+                  viewport={{ once: false, amount: 0.8 }}
                   transition={{ delay: 0.3 + (i * 0.1) }}
-                  className="flex items-center"
+                  whileHover={!isMobile ? { x: 10, color: '#fff' } : {}}
+                  className="flex items-center transition-colors"
                   style={{ gap: '0.75rem' }}
                 >
                   <div className="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center">
@@ -139,13 +145,14 @@ const About: React.FC = () => {
               {stats.map((stat, i) => (
                 <motion.div 
                   key={stat.label}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  initial={shouldAnimate ? { opacity: 0, y: 15 } : undefined}
+                  whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+                  viewport={{ once: false, amount: 0.8 }}
                   transition={{ delay: 0.5 + (i * 0.1) }}
+                  whileHover={!isMobile ? { y: -5 } : {}}
                 >
                   <p 
-                    className="font-black rainbow-text tracking-tighter"
+                    className={`font-black rainbow-text ${shouldAnimate ? 'animate-rainbow' : ''} tracking-tighter`}
                     style={{ 
                       fontSize: isMobile ? '1.5rem' : '1.875rem',
                       marginBottom: '0.25rem' 
@@ -157,7 +164,7 @@ const About: React.FC = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer 
-      className="bg-dark-lighter border-t border-white/5" 
+      className="bg-dark-lighter border-t border-white/5 flex flex-col items-center w-full" 
       aria-labelledby="footer-heading"
       style={{ 
         paddingTop: isMobile ? '4rem' : '6rem', 

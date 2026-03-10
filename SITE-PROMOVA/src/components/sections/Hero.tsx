@@ -1,12 +1,22 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { Play, ArrowRight } from 'lucide-react';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 const Hero: React.FC = () => {
   const { width } = useWindowSize();
+  const { scrollY } = useScroll();
+  const [isAtTop, setIsAtTop] = React.useState(true);
   const isMobile = width < 768;
   const isTablet = width >= 768 && width < 1024;
+
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    setIsAtTop(latest < 5);
+  });
+
+  // Stop foreground animations after 50px of scroll
+  const foregroundOpacity = useTransform(scrollY, [0, 50], [1, 0]);
+  const foregroundPointerEvents = useTransform(scrollY, (value) => value > 50 ? 'none' : 'auto');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -56,11 +66,13 @@ const Hero: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)]"></div>
       </div>
 
-      <div 
+      <motion.div 
         className="max-w-7xl mx-auto z-10 text-center"
         style={{ 
           paddingLeft: isMobile ? '1rem' : '1.5rem', 
-          paddingRight: isMobile ? '1rem' : '1.5rem' 
+          paddingRight: isMobile ? '1rem' : '1.5rem',
+          opacity: foregroundOpacity,
+          pointerEvents: foregroundPointerEvents as any
         }}
       >
         <motion.div
@@ -93,7 +105,18 @@ const Hero: React.FC = () => {
             }}
           >
             TRANSFORMAMOS <br />
-            <span className="rainbow-text reveal-text">IDEIAS EM</span> <br />
+            <motion.span 
+              initial={{ clipPath: 'inset(0 100% 0 0)' }}
+              animate={{ clipPath: 'inset(0 0 0 0)' }}
+              transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.5 }}
+              className={`rainbow-text ${isAtTop ? 'animate-rainbow-infinite' : ''}`} 
+              style={{ 
+                display: 'inline-block',
+                transition: 'opacity 0.5s ease' 
+              }}
+            >
+              IDEIAS EM
+            </motion.span> <br />
             MOVIMENTO.
           </motion.h1>
           
@@ -145,15 +168,18 @@ const Hero: React.FC = () => {
             </a>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div
+        style={{ 
+          opacity: foregroundOpacity,
+          gap: '0.75rem' 
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
-        style={{ gap: '0.75rem' }}
       >
         <span className="text-[7px] uppercase tracking-[0.4em] text-white/20 font-black">Scroll</span>
         <div className="w-px h-8 md:h-12 bg-linear-to-b from-white/20 to-transparent"></div>

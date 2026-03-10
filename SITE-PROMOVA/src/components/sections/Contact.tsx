@@ -21,6 +21,14 @@ const Contact: React.FC = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [animationCount, setAnimationCount] = useState(0);
+
+  // Stop animations after 2 cycles on mobile
+  const shouldAnimate = !isMobile || animationCount < 2;
+
+  const handleAnimationComplete = () => {
+    if (isMobile) setAnimationCount(prev => prev + 1);
+  };
 
   const {
     register,
@@ -86,22 +94,23 @@ const Contact: React.FC = () => {
         >
           <div>
             <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false, amount: 0.8 }}
+              onAnimationComplete={handleAnimationComplete}
               className="font-black tracking-tighter uppercase leading-[0.95]"
               style={{ 
                 fontSize: isMobile ? '2.5rem' : '3.75rem',
                 marginBottom: '2rem' 
               }}
             >
-              VAMOS <span className="rainbow-text">PROMOVER</span> <br />
+              VAMOS <span className={`rainbow-text ${shouldAnimate ? 'animate-rainbow' : ''}`}>PROMOVER</span> <br />
               SEU NEGÓCIO?
             </motion.h2>
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false, amount: 0.8 }}
               transition={{ delay: 0.2 }}
               className="text-white/40 max-w-md font-medium"
               style={{ 
@@ -117,10 +126,11 @@ const Contact: React.FC = () => {
               {contactInfo.map((info, idx) => (
                 <motion.div 
                   key={info.label}
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  initial={shouldAnimate ? { opacity: 0, x: -15 } : undefined}
+                  whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
+                  viewport={{ once: false, amount: 0.8 }}
                   transition={{ delay: 0.3 + (idx * 0.1) }}
+                  whileHover={!isMobile ? { x: 10 } : undefined}
                   className="flex items-center group cursor-pointer"
                   style={{ gap: '1.5rem' }}
                 >
@@ -150,9 +160,9 @@ const Contact: React.FC = () => {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={shouldAnimate ? { opacity: 0, y: 40 } : undefined}
+            whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+            viewport={{ once: false, amount: 0.8 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as any }}
             className="glass rounded-[48px] border border-white/5 relative"
             style={{ padding: isMobile ? '2rem' : '3rem' }}
@@ -307,7 +317,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-2xl bg-white text-black font-black uppercase tracking-[0.15em] text-xs flex items-center justify-center hover:bg-white/90 transition-all hover:scale-[1.01] active:scale-95 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                className="w-full rounded-2xl bg-white text-black font-black uppercase tracking-[0.15em] text-xs flex items-center justify-center hover:bg-white/90 transition-all hover:scale-[1.01] active:scale-95 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed animate-pulse-white"
                 style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem', gap: '0.75rem', marginTop: '0.5rem' }}
               >
                 {isSubmitting ? (

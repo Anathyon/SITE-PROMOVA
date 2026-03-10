@@ -46,6 +46,20 @@ body::selection {
   background-clip: text;
   color: transparent;
   background-size: 200% auto;
+  transition: filter 0.3s ease;
+}
+
+.rainbow-text:hover {
+  animation: shine 3s linear infinite !important;
+  filter: brightness(1.2);
+  cursor: default;
+}
+
+.animate-rainbow {
+  animation: shine 3s linear 2 forwards;
+}
+
+.animate-rainbow-infinite {
   animation: shine 3s linear infinite;
 }
 
@@ -133,6 +147,27 @@ body::selection {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-white {
+  0% { 
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.02);
+  }
+  70% { 
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
+  100% { 
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-white {
+  animation: pulse-white 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .delay-1000 {

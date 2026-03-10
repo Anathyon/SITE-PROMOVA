@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { services } from '../../data/services';
@@ -6,6 +6,14 @@ import { services } from '../../data/services';
 const Services: React.FC = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;
+  const [animationCount, setAnimationCount] = useState(0);
+
+  // Stop animations after 2 cycles on mobile
+  const shouldAnimate = !isMobile || animationCount < 2;
+
+  const handleAnimationComplete = () => {
+    if (isMobile) setAnimationCount(prev => prev + 1);
+  };
 
   return (
     <section 
@@ -28,21 +36,22 @@ const Services: React.FC = () => {
           style={{ marginBottom: isMobile ? '3rem' : '5rem' }}
         >
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+            whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+            viewport={{ once: false, amount: 0.8 }}
+            onAnimationComplete={handleAnimationComplete}
             className="font-black tracking-tighter uppercase"
             style={{ 
               fontSize: isMobile ? '2.5rem' : '4rem',
               marginBottom: '1.25rem' 
             }}
           >
-            NOSSOS <span className="rainbow-text">SERVIÇOS</span>
+            NOSSOS <span className={`rainbow-text ${shouldAnimate ? 'animate-rainbow' : ''}`}>SERVIÇOS</span>
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+            whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+            viewport={{ once: false, amount: 0.8 }}
             transition={{ delay: 0.2 }}
             className="text-white/40 max-w-xl mx-auto font-medium"
             style={{ fontSize: isMobile ? '0.875rem' : '1.125rem' }}
@@ -58,12 +67,12 @@ const Services: React.FC = () => {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false, amount: 0.8 }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
-              whileHover={{ y: -8 }}
-              className="group rounded-[32px] bg-dark border border-white/5 hover:border-white/10 transition-all duration-500 relative overflow-hidden flex flex-col items-center text-center"
+              whileHover={!isMobile ? { y: -12, scale: 1.02 } : {}}
+              className="group rounded-[32px] bg-dark border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center text-center cursor-default"
               style={{ padding: isMobile ? '1.5rem' : '2rem' }}
             >
               {/* Hover Gradient Background */}
@@ -75,14 +84,14 @@ const Services: React.FC = () => {
               ></div>
               
               <div 
-                className="rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-700"
+                className="rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-700"
                 style={{ 
                   width: '3.5rem', 
                   height: '3.5rem', 
                   marginBottom: '1.5rem' 
                 }}
               >
-                <service.icon className="text-white w-7 h-7" />
+                <service.icon className="w-7 h-7" />
               </div>
               
               <h3 

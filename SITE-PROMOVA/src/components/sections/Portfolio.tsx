@@ -10,6 +10,14 @@ const Portfolio: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { width } = useWindowSize();
   const isMobile = width < 768;
+  const [animationCount, setAnimationCount] = useState(0);
+
+  // Stop animations after 2 cycles on mobile
+  const shouldAnimate = !isMobile || animationCount < 2;
+
+  const handleAnimationComplete = () => {
+    if (isMobile) setAnimationCount(prev => prev + 1);
+  };
 
   return (
     <section 
@@ -33,21 +41,22 @@ const Portfolio: React.FC = () => {
         >
           <div className="max-w-xl">
             <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false, amount: 0.8 }}
+              onAnimationComplete={handleAnimationComplete}
               className="font-black tracking-tighter uppercase"
               style={{ 
                 fontSize: isMobile ? '2.5rem' : '4rem',
                 marginBottom: '1rem' 
               }}
             >
-              NOSSO <span className="rainbow-text">PORTFÓLIO</span>
+              NOSSO <span className={`rainbow-text ${shouldAnimate ? 'animate-rainbow' : ''}`}>PORTFÓLIO</span>
             </motion.h2>
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false, amount: 0.8 }}
               transition={{ delay: 0.2 }}
               className="text-white/40 font-medium"
               style={{ fontSize: isMobile ? '0.875rem' : '1.125rem' }}
@@ -56,9 +65,9 @@ const Portfolio: React.FC = () => {
             </motion.p>
           </div>
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={shouldAnimate ? { opacity: 0, x: 20 } : undefined}
+            whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
+            viewport={{ once: false, amount: 0.8 }}
             transition={{ delay: 0.3 }}
             className="flex"
             style={{ gap: '0.75rem' }}
@@ -82,10 +91,11 @@ const Portfolio: React.FC = () => {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: false }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
+              whileHover={!isMobile ? { scale: 1.02, y: -5 } : undefined}
               onClick={() => setSelectedProject(project)}
               className="group relative aspect-4/5 overflow-hidden rounded-[32px] bg-dark-lighter border border-white/5 cursor-pointer"
             >
@@ -122,7 +132,6 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
 
-      {/* Project Modal */}
       <AnimatePresence>
         {selectedProject && (
           <Dialog
