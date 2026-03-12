@@ -15,6 +15,12 @@ export const services: Service[] = [
     colors: { from: '#ff7f00', to: '#ffff00' }, // orange to yellow
   },
   {
+   title: 'Transmissão ao Vivo',
+    description: 'Lives profissionais para eventos, webinars e lançamentos com multi-câmeras.',
+    icon: Zap,
+    colors: { from: '#0000ff', to: '#ff0000' }, // blue to red
+  },
+  {
     title: 'Edição & Motion',
     description: 'Pós-produção avançada, color grading e animações que dão vida ao seu projeto.',
     icon: MonitorPlay,
@@ -25,12 +31,6 @@ export const services: Service[] = [
     description: 'Criação de Reels, TikToks e conteúdos dinâmicos otimizados para engajamento.',
     icon: Share2,
     colors: { from: '#00ff00', to: '#0000ff' }, // green to blue
-  },
-  {
-    title: 'Transmissão ao Vivo',
-    description: 'Lives profissionais para eventos, webinars e lançamentos com multi-câmeras.',
-    icon: Zap,
-    colors: { from: '#0000ff', to: '#ff0000' }, // blue to red
   },
   {
     title: 'Estratégia Visual',
