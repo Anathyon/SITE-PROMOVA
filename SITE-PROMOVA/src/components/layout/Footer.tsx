@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
     { Icon: Instagram, href: 'https://instagram.com/pro.movaproducoes/', label: 'Instagram' },
     { Icon: Facebook, href: 'https://facebook.com/promovaproducoes', label: 'Facebook' },
     { Icon: Youtube, href: 'https://www.youtube.com/c/PromovaProdu%C3%A7%C3%B5es/videos', label: 'Youtube' },
-    { Icon: WhatsAppIcon, href: 'https://wa.me/5588996160395', label: 'WhatsApp' }
+    { Icon: WhatsAppIcon, href: 'https://wa.me/5588994368177', label: 'WhatsApp' }
   ];
 
   const quickLinks = [
