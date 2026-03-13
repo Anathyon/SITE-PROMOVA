@@ -51,7 +51,7 @@ const CTA: React.FC = () => {
           whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
           whileHover={!isMobile ? { scale: 1.01 } : undefined}
           onAnimationComplete={handleAnimationComplete}
-          viewport={{ once: false, amount: 0.8 }}
+          viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="glass border border-white/10 max-w-5xl mx-auto shadow-2xl cursor-default"
           style={{ 

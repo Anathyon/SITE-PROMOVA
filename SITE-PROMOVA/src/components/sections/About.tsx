@@ -41,7 +41,7 @@ const About: React.FC = () => {
             whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
             whileHover={!isMobile ? { scale: 1.02 } : {}}
             onAnimationComplete={handleAnimationComplete}
-            viewport={{ once: false, amount: 0.8 }}
+            viewport={{ once: true, amount: 0.8 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as any }}
             className="relative"
           >
@@ -60,7 +60,7 @@ const About: React.FC = () => {
             <motion.div 
               initial={shouldAnimate ? { opacity: 0, scale: 0.9 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, scale: 1 } : undefined}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.8 }}
               className="absolute glass rounded-[32px] border border-white/5 hidden md:block cursor-default"
               style={{
@@ -86,7 +86,7 @@ const About: React.FC = () => {
             <motion.h2 
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.8 }}
               className="font-black tracking-tighter uppercase leading-[0.95]"
               style={{ 
                 fontSize: isMobile ? '2.5rem' : '3.75rem',
@@ -99,7 +99,7 @@ const About: React.FC = () => {
             <motion.p 
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.8 }}
               transition={{ delay: 0.2 }}
               className="text-white/40 leading-relaxed font-medium"
               style={{ 
@@ -121,7 +121,7 @@ const About: React.FC = () => {
                   key={item}
                   initial={shouldAnimate ? { opacity: 0, x: 15 } : undefined}
                   whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
-                  viewport={{ once: false, amount: 0.8 }}
+                  viewport={{ once: true, amount: 0.8 }}
                   transition={{ delay: 0.3 + (i * 0.1) }}
                   whileHover={!isMobile ? { x: 10, color: '#fff' } : {}}
                   className="flex items-center transition-colors"
@@ -147,7 +147,7 @@ const About: React.FC = () => {
                   key={stat.label}
                   initial={shouldAnimate ? { opacity: 0, y: 15 } : undefined}
                   whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-                  viewport={{ once: false, amount: 0.8 }}
+                  viewport={{ once: true, amount: 0.8 }}
                   transition={{ delay: 0.5 + (i * 0.1) }}
                   whileHover={!isMobile ? { y: -5 } : {}}
                 >

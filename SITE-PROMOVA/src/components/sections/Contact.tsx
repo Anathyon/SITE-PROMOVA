@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import { useForm } from 'react-hook-form';
+import { Send, CheckCircle2, AlertCircle, ChevronDown, Check } from 'lucide-react';
+import { useForm, Controller } from 'react-hook-form';
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from '@headlessui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useWindowSize } from '../../hooks/useWindowSize';
@@ -34,6 +35,7 @@ const Contact: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isSubmitting }
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -96,7 +98,7 @@ const Contact: React.FC = () => {
             <motion.h2 
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.8 }}
               onAnimationComplete={handleAnimationComplete}
               className="font-black tracking-tighter uppercase leading-[0.95]"
               style={{ 
@@ -110,7 +112,7 @@ const Contact: React.FC = () => {
             <motion.p 
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.8 }}
               transition={{ delay: 0.2 }}
               className="text-white/40 max-w-md font-medium"
               style={{ 
@@ -128,7 +130,7 @@ const Contact: React.FC = () => {
                   key={info.label}
                   initial={shouldAnimate ? { opacity: 0, x: -15 } : undefined}
                   whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
-                  viewport={{ once: false, amount: 0.8 }}
+                  viewport={{ once: true, amount: 0.8 }}
                   transition={{ delay: 0.3 + (idx * 0.1) }}
                   whileHover={!isMobile ? { x: 10 } : undefined}
                   className="flex items-center group cursor-pointer"
@@ -162,7 +164,7 @@ const Contact: React.FC = () => {
           <motion.div
             initial={shouldAnimate ? { opacity: 0, y: 40 } : undefined}
             whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-            viewport={{ once: false, amount: 0.8 }}
+            viewport={{ once: true, amount: 0.8 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as any }}
             className="glass rounded-[48px] border border-white/5 relative"
             style={{ padding: isMobile ? '2rem' : '3rem' }}
@@ -232,24 +234,59 @@ const Contact: React.FC = () => {
                 >
                   Serviço de Interesse
                 </label>
-                <select 
-                  {...register('service')}
-                  className={`w-full bg-white/5 border rounded-2xl focus:outline-none transition-all font-bold uppercase tracking-widest text-[10px] appearance-none ${
-                    errors.service ? 'border-red-500/50 focus:border-red-500' : 'border-white/5 focus:border-white/20'
-                  }`}
-                  style={{
-                    padding: '1rem 1.5rem',
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right 1.5rem center',
-                  }}
-                >
-                  {contactServices.map(service => (
-                    <option key={service} value={service} className="bg-dark text-white">
-                      {service}
-                    </option>
-                  ))}
-                </select>
+                
+                <Controller
+                  name="service"
+                  control={control}
+                  render={({ field }) => (
+                    <Listbox value={field.value} onChange={field.onChange}>
+                      <div className="relative">
+                        <ListboxButton 
+                          className={`w-full bg-white/5 border rounded-2xl focus:outline-none transition-all font-bold uppercase tracking-widest text-[10px] text-left flex items-center justify-between ${
+                            errors.service ? 'border-red-500/50 focus:border-red-500' : 'border-white/5 focus:border-white/20'
+                          }`}
+                          style={{ padding: '1rem 1.5rem' }}
+                        >
+                          <span className="truncate">{field.value}</span>
+                          <ChevronDown className="w-4 h-4 text-white/40" />
+                        </ListboxButton>
+
+                        <Transition
+                          as={React.Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <ListboxOptions 
+                            className="absolute z-50 mt-2 w-full glass rounded-2xl border border-white/10 overflow-hidden shadow-2xl focus:outline-none"
+                            style={{ padding: '0.5rem' }}
+                          >
+                            {contactServices.map((service) => (
+                              <ListboxOption
+                                key={service}
+                                value={service}
+                                className={({ active, selected }) =>
+                                  `relative cursor-pointer select-none rounded-xl transition-all font-bold uppercase tracking-widest text-[10px] flex items-center justify-between ${
+                                    active ? 'bg-white/10 text-white' : 'text-white/60'
+                                  } ${selected ? 'text-white' : ''}`
+                                }
+                                style={{ padding: '0.875rem 1rem' }}
+                              >
+                                {({ selected }) => (
+                                  <>
+                                    <span className="truncate">{service}</span>
+                                    {selected && <Check className="w-3 h-3 text-white" />}
+                                  </>
+                                )}
+                              </ListboxOption>
+                            ))}
+                          </ListboxOptions>
+                        </Transition>
+                      </div>
+                    </Listbox>
+                  )}
+                />
+                
                 {errors.service && (
                   <span 
                     className="text-red-400 text-xs font-medium"

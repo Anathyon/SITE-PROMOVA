@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Play, ArrowRight } from 'lucide-react';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
@@ -14,9 +14,6 @@ const Hero: React.FC = () => {
     setIsAtTop(latest < 5);
   });
 
-  // Stop foreground animations after 50px of scroll
-  const foregroundOpacity = useTransform(scrollY, [0, 50], [1, 0]);
-  const foregroundPointerEvents = useTransform(scrollY, (value) => value > 50 ? 'none' : 'auto');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,9 +67,7 @@ const Hero: React.FC = () => {
         className="max-w-7xl mx-auto z-10 text-center"
         style={{ 
           paddingLeft: isMobile ? '1rem' : '1.5rem', 
-          paddingRight: isMobile ? '1rem' : '1.5rem',
-          opacity: foregroundOpacity,
-          pointerEvents: foregroundPointerEvents as any
+          paddingRight: isMobile ? '1rem' : '1.5rem'
         }}
       >
         <motion.div
@@ -173,7 +168,6 @@ const Hero: React.FC = () => {
       {/* Scroll Indicator */}
       <motion.div
         style={{ 
-          opacity: foregroundOpacity,
           gap: '0.75rem' 
         }}
         initial={{ opacity: 0 }}

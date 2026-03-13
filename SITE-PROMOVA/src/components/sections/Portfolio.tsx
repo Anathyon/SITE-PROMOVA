@@ -43,7 +43,7 @@ const Portfolio: React.FC = () => {
             <motion.h2 
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.8 }}
               onAnimationComplete={handleAnimationComplete}
               className="font-black tracking-tighter uppercase"
               style={{ 
@@ -56,7 +56,7 @@ const Portfolio: React.FC = () => {
             <motion.p 
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.8 }}
               transition={{ delay: 0.2 }}
               className="text-white/40 font-medium"
               style={{ fontSize: isMobile ? '0.875rem' : '1.125rem' }}
@@ -67,7 +67,7 @@ const Portfolio: React.FC = () => {
           <motion.div 
             initial={shouldAnimate ? { opacity: 0, x: 20 } : undefined}
             whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
-            viewport={{ once: false, amount: 0.8 }}
+            viewport={{ once: true, amount: 0.8 }}
             transition={{ delay: 0.3 }}
             className="flex"
             style={{ gap: '0.75rem' }}
@@ -93,7 +93,7 @@ const Portfolio: React.FC = () => {
               key={project.title}
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               whileHover={!isMobile ? { scale: 1.02, y: -5 } : undefined}
               onClick={() => setSelectedProject(project)}

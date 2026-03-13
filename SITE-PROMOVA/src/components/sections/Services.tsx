@@ -38,7 +38,7 @@ const Services: React.FC = () => {
           <motion.h2 
             initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
             whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-            viewport={{ once: false, amount: 0.8 }}
+            viewport={{ once: true, amount: 0.8 }}
             onAnimationComplete={handleAnimationComplete}
             className="font-black tracking-tighter uppercase"
             style={{ 
@@ -51,7 +51,7 @@ const Services: React.FC = () => {
           <motion.p 
             initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
             whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-            viewport={{ once: false, amount: 0.8 }}
+            viewport={{ once: true, amount: 0.8 }}
             transition={{ delay: 0.2 }}
             className="text-white/40 max-w-xl mx-auto font-medium"
             style={{ fontSize: isMobile ? '0.875rem' : '1.125rem' }}
@@ -69,7 +69,7 @@ const Services: React.FC = () => {
               key={service.title}
               initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: false, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.8 }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               whileHover={!isMobile ? { y: -12, scale: 1.02 } : {}}
               className="group rounded-[32px] bg-dark border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center text-center cursor-default"
