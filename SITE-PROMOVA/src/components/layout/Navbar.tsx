@@ -48,9 +48,9 @@ const Navbar: React.FC = () => {
           style={{ gap: isMobile ? '0.5rem' : '1rem' }}
         >
           <img 
-            src="/assets/icons/icon-promova.png" 
+            src="/assets/imgs/logo.png" 
             alt="Promova Logo" 
-            className="rounded-full border border-white/10 group-hover:scale-110 transition-transform duration-500" 
+            className="rounded-full group-hover:scale-110 transition-transform duration-500" 
             style={{ 
               height: isMobile ? '2.5rem' : '4rem', 
               width: isMobile ? '2.5rem' : '4rem' 
