@@ -3,12 +3,26 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Play, ArrowRight } from 'lucide-react';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
+const backgroundVideos = [
+  '/assets/videos-bg/148746-794599341.min.mp4',
+  '/assets/videos-bg/24497-344562750.min.mp4',
+  '/assets/videos-bg/26531-357855224.min.mp4',
+  '/assets/videos-bg/7350-199627510.min.mp4'
+];
+
 const Hero: React.FC = () => {
   const { width } = useWindowSize();
   const { scrollY } = useScroll();
   const [isAtTop, setIsAtTop] = React.useState(true);
+  const [videoSrc, setVideoSrc] = React.useState('');
   const isMobile = width < 768;
   const isTablet = width >= 768 && width < 1024;
+
+  React.useEffect(() => {
+    // Select a random video only on the client side to prevent hydration mismatches
+    const randomVideo = backgroundVideos[Math.floor(Math.random() * backgroundVideos.length)];
+    setVideoSrc(randomVideo);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest: number) => {
     setIsAtTop(latest < 5);
@@ -52,6 +66,22 @@ const Hero: React.FC = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
+        {/* Background Video */}
+        {videoSrc && (
+          <video
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
+        
+        {/* Smooth Dark Backdrop to Ensure Content is Readable */}
+        <div className="absolute inset-0 bg-black/80 z-0 pointer-events-none"></div>
+
+
         <div 
           className="absolute top-1/4 -left-20 w-[300px] md:w-[400px] h-[300px] md:h-[400px] blur-[80px] md:blur-[120px] rounded-full animate-float"
           style={{ backgroundColor: 'rgba(0, 0, 255, 0.1)' }}
