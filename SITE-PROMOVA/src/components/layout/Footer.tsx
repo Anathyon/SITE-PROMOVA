@@ -75,9 +75,9 @@ const Footer: React.FC = () => {
               style={{ gap: '1.25rem', marginBottom: '2rem' }}
             >
               <img 
-                src="/assets/icons/icon-promova.png" 
+                src="/assets/imgs/logo.png" 
                 alt="Promova Logo" 
-                className="h-14 w-14 rounded-full border border-white/10" 
+                className="h-14 w-14 rounded-full" 
                 loading="lazy"
               />
               <span className="text-2xl font-black tracking-tighter rainbow-text">PROMOVA</span>
