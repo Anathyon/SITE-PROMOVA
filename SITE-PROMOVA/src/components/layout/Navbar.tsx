@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
             }}
           />
           <span 
-            className="font-black tracking-tighter rainbow-text"
+            className="font-black font-montserrat tracking-tighter rainbow-text"
             style={{ fontSize: isMobile ? '1.25rem' : '1.875rem' }}
           >
             PROMOVA PRODUÇÕES
