@@ -3,6 +3,12 @@ import { motion } from 'framer-motion';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { services } from '../../data/services';
 
+/**
+ * Componente Services
+ * Exibe a grade de serviços oferecidos pela empresa com animações e 
+ * background de gradiente interativo. Em dispositivos móveis, as animações
+ * rodarão no máximo duas vezes para evitar distrações.
+ */
 const Services: React.FC = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;

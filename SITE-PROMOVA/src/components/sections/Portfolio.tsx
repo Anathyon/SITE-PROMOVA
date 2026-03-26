@@ -6,6 +6,16 @@ import { useWindowSize } from '../../hooks/useWindowSize';
 import { projects } from '../../data/projects';
 import type { Project } from '../../types';
 
+/**
+ * Categorias de portfólio para o filtro visual na tela
+ */
+const categories = ['Todos', 'Vídeo', 'Foto'];
+
+/**
+ * Componente Portfolio
+ * Exibe uma galeria dos projetos da empresa, com funcionalidade
+ * de modal detalhado clicando nos projetos listados.
+ */
 const Portfolio: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { width } = useWindowSize();
@@ -72,7 +82,7 @@ const Portfolio: React.FC = () => {
             className="flex"
             style={{ gap: '0.75rem' }}
           >
-            {['Todos', 'Vídeo', 'Foto'].map((cat) => (
+            {categories.map((cat) => (
               <button 
                 key={cat} 
                 className="rounded-full border border-white/5 hover:border-white/20 transition-all text-[10px] font-black uppercase tracking-widest hover:bg-white/5"

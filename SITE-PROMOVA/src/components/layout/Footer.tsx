@@ -5,6 +5,9 @@ import LegalModal from '../ui/LegalModal';
 import { legalContent } from '../../data/legal';
 import type { LegalSection } from '../../data/legal';
 
+/**
+ * Ícone customizado do WhatsApp
+ */
 const WhatsAppIcon = ({ size = 18, className = "" }) => (
   <svg 
     width={size} 
@@ -17,33 +20,41 @@ const WhatsAppIcon = ({ size = 18, className = "" }) => (
   </svg>
 );
 
+/**
+ * Constantes estáticas movidas para fora do componente base para evitar recriação
+ * a cada ciclo de renderização, otimizando o consumo de memória.
+ */
+const socialLinks = [
+  { Icon: Instagram, href: 'https://instagram.com/pro.movaproducoes/', label: 'Instagram' },
+  { Icon: Facebook, href: 'https://facebook.com/promovaproducoes', label: 'Facebook' },
+  { Icon: Youtube, href: 'https://www.youtube.com/c/PromovaProdu%C3%A7%C3%B5es/videos', label: 'Youtube' },
+  { Icon: WhatsAppIcon, href: 'https://wa.me/5588994368177', label: 'WhatsApp' }
+];
+
+const quickLinks = [
+  { name: 'Início', href: '#home' },
+  { name: 'Serviços', href: '#services' },
+  { name: 'Portfólio', href: '#portfolio' },
+  { name: 'Sobre', href: '#about' },
+  { name: 'Contato', href: '#contact' }
+];
+
+const legalLinks: Array<{ name: keyof typeof legalContent }> = [
+  { name: 'Termos de Uso' },
+  { name: 'Privacidade' },
+  { name: 'Cookies' },
+  { name: 'LGPD' }
+];
+
+/**
+ * Componente Footer
+ * Apresenta links de navegação, redes sociais, modal legal e branding.
+ */
 const Footer: React.FC = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;
   const currentYear = new Date().getFullYear();
   const [activeLegal, setActiveLegal] = useState<LegalSection | null>(null);
-
-  const socialLinks = [
-    { Icon: Instagram, href: 'https://instagram.com/pro.movaproducoes/', label: 'Instagram' },
-    { Icon: Facebook, href: 'https://facebook.com/promovaproducoes', label: 'Facebook' },
-    { Icon: Youtube, href: 'https://www.youtube.com/c/PromovaProdu%C3%A7%C3%B5es/videos', label: 'Youtube' },
-    { Icon: WhatsAppIcon, href: 'https://wa.me/5588994368177', label: 'WhatsApp' }
-  ];
-
-  const quickLinks = [
-    { name: 'Início', href: '#home' },
-    { name: 'Serviços', href: '#services' },
-    { name: 'Portfólio', href: '#portfolio' },
-    { name: 'Sobre', href: '#about' },
-    { name: 'Contato', href: '#contact' }
-  ];
-
-  const legalLinks = [
-    { name: 'Termos de Uso' },
-    { name: 'Privacidade' },
-    { name: 'Cookies' },
-    { name: 'LGPD' }
-  ];
 
   return (
     <footer 

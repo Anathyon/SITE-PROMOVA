@@ -3,6 +3,10 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Play, ArrowRight } from 'lucide-react';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
+/**
+ * Lista de vídeos que podem ser usados como background.
+ * Separada for do componente para evitar recriar na renderização.
+ */
 const backgroundVideos = [
   '/assets/videos-bg/148746-794599341.min.mp4',
   '/assets/videos-bg/24497-344562750.min.mp4',
@@ -10,6 +14,11 @@ const backgroundVideos = [
   '/assets/videos-bg/7350-199627510.min.mp4'
 ];
 
+/**
+ * Componente Hero
+ * A primeira seção vista pelo usuário. Contém vídeos de fundo randômicos,
+ * efeitos de texto arco-íris e chamadas à ação (CTAs).
+ */
 const Hero: React.FC = () => {
   const { width } = useWindowSize();
   const { scrollY } = useScroll();

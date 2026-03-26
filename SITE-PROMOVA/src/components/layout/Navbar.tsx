@@ -2,6 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
+/**
+ * Links de navegação principais do site.
+ * Extraídos para fora do componente para evitar recriação a cada renderização.
+ */
+const navLinks = [
+  { name: 'Início', href: '#home' },
+  { name: 'Sobre', href: '#about' },
+  { name: 'Serviços', href: '#services' },
+  { name: 'Portfólio', href: '#portfolio' },
+  { name: 'Contato', href: '#contact' },
+];
+
+/**
+ * Componente Navbar
+ * Responsável pela navegação principal, apresentando um design responsivo.
+ * Utiliza o hook customizado `useWindowSize` para gerenciar os espaçamentos dinamicamente via inline styles.
+ */
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,20 +26,13 @@ const Navbar: React.FC = () => {
   const isMobile = width < 768;
 
   useEffect(() => {
+    // Escuta o evento de scroll para alterar a aparência da navbar
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: 'Início', href: '#home' },
-    { name: 'Sobre', href: '#about' },
-    { name: 'Serviços', href: '#services' },
-    { name: 'Portfólio', href: '#portfolio' },
-    { name: 'Contato', href: '#contact' },
-  ];
 
   return (
     <nav
