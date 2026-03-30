@@ -50,10 +50,20 @@ const Contact: React.FC = () => {
   const onSubmit = async (data: ContactFormValues) => {
     try {
       setSubmitStatus('idle');
-      // Simulate API call for form submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Dados enviados:', data);
       
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Falha ao enviar formulário');
+      }
+
+      console.log('Dados enviados:', data);
       setSubmitStatus('success');
       reset();
       
