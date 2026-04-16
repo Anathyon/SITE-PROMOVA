@@ -39,7 +39,7 @@ const Portfolio: React.FC = () => {
       }}
     >
       <div 
-        className="max-w-[85%] mx-auto"
+        className="max-w-[80%] mx-auto"
         style={{ 
           paddingLeft: isMobile ? '1rem' : '1.5rem', 
           paddingRight: isMobile ? '1rem' : '1.5rem' 
@@ -107,15 +107,15 @@ const Portfolio: React.FC = () => {
               transition={{ delay: index * 0.1, duration: 0.8 }}
               whileHover={!isMobile ? { scale: 1.02, y: -5 } : undefined}
               onClick={() => setSelectedProject(project)}
-              className="group relative aspect-4/5 overflow-hidden rounded-[32px] bg-dark-lighter border border-white/5 cursor-pointer"
+              className="group relative aspect-4/5 overflow-hidden rounded-[32px] bg-dark-lighter border border-white/5 cursor-pointer shadow-2xl shadow-black/50"
             >
               <img
                 src={project.image}
                 alt={project.title}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.7] group-hover:brightness-[0.85]"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-dark via-dark/10 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700"></div>
               
               <div 
                 className="absolute bottom-0 left-0 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-700"
@@ -125,7 +125,7 @@ const Portfolio: React.FC = () => {
                   {project.category}
                 </span>
                 <h3 
-                  className="font-black text-white uppercase tracking-tight leading-tight"
+                  className="font-black text-white uppercase tracking-tight leading-tight drop-shadow-2xl"
                   style={{ 
                     fontSize: isMobile ? '1.25rem' : '1.5rem',
                     marginBottom: '1.25rem' 

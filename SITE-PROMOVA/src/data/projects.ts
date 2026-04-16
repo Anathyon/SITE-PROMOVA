@@ -4,55 +4,55 @@ export const projects: Project[] = [
   {
     title: 'II Exposição da Agricultura Familiar',
     category: 'Evento / Meruoca',
-    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/imgs/agricultura-familiar.jpg',
     description: 'Cobertura completa da II Exposição da Agricultura Familiar em Meruoca. O evento reuniu agricultores da Região Norte para palestras sobre cadastro agropecuário, uso correto de agrotóxicos e registro de granjas avícolas, focando na segurança alimentar e desenvolvimento sustentável.',
     date: 'Agosto 2025',
     location: 'Meruoca, CE',
     tags: ['Evento', 'Cobertura', 'Agricultura']
   },
   {
-    title: 'Projeto Mandalla - Piscicultura',
-    category: 'Documentário / Agronegócio',
-    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800',
-    description: 'Produção documental sobre o Projeto Mandalla, que integra produção vegetal e piscicultura. O vídeo destaca as técnicas inovadoras de cultivo e o impacto positivo na economia local e na sustentabilidade da região.',
-    date: 'Julho 2025',
-    location: 'Região Norte, CE',
-    tags: ['Documentário', 'Sustentabilidade', 'Piscicultura']
-  },
-  {
-    title: 'Ceará Ciclo Natalino 2024',
+    title: 'Carnaval Cultural de Meruoca',
     category: 'Cultura / Evento',
-    image: 'https://images.unsplash.com/photo-1514525253361-bee8718a740d?auto=format&fit=crop&q=80&w=800',
-    description: 'Registro audiovisual das Mostras Regionais do Ciclo Natalino no Ceará. Cobertura de grupos de pastoril, boi, reisado, lapinha viva e presépios em oito macrorregiões do estado, preservando a cultura popular cearense.',
-    date: 'Dezembro 2024',
-    location: 'Ceará (Diversas Regiões)',
-    tags: ['Cultura', 'Tradição', 'Evento']
+    image: '/assets/imgs/carnaval-cultural.jpg',
+    description: 'Registro das manifestações culturais e da alegria que toma conta das ruas de Meruoca durante o Carnaval Cultural. Uma celebração da tradição, música e cores que definem a identidade local e encantam visitantes de todo o estado.',
+    date: 'Fevereiro 2025',
+    location: 'Meruoca, CE',
+    tags: ['Cultura', 'Tradição', 'Carnaval']
   },
   {
-    title: 'TV de Rua - Instituto Tapuia',
-    category: 'Audiovisual / Social',
-    image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=800',
-    description: 'Série de produções audiovisuais para o projeto TV de Rua, realizado pelo Instituto Tapuia de Cidadania. O projeto utiliza o audiovisual como ferramenta de inclusão social e expressão cultural em comunidades locais.',
+    title: 'Cine Meru - Mostra de Cinema',
+    category: 'Cinema / Cultura',
+    image: '/assets/imgs/cine-meru.jpg',
+    description: 'Produção e cobertura da Cine Meru, uma mostra de cinema que leva a sétima arte para o coração da serra. O projeto incentiva a produção local e democratiza o acesso à cultura audiovisual em Meruoca e regiões vizinhas.',
+    date: 'Junho 2025',
+    location: 'Meruoca, CE',
+    tags: ['Cinema', 'Cultura', 'Mostra']
+  },
+  {
+    title: 'Projeto Criança Sorrir',
+    category: 'Social / Comunitário',
+    image: '/assets/imgs/crianca-sorrir.jpg',
+    description: 'Documentação das ações sociais do Projeto Criança Sorrir, que leva alegria, educação e suporte para as crianças de nossas comunidades. Um trabalho transformador que utiliza o audiovisual para dar voz a causas sociais importantes.',
     date: 'Outubro 2024',
-    location: 'Sobral e Região',
+    location: 'Região Norte, CE',
     tags: ['Social', 'Inclusão', 'Comunidade']
   },
   {
-    title: 'Institucional Meruoca Região Norte',
-    category: 'Governo / Turismo',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
-    description: 'Vídeo institucional focado no desenvolvimento e potencial turístico de Meruoca e região. Produção de alta qualidade destacando as belezas naturais, infraestrutura e a missão de promoção do desenvolvimento regional.',
-    date: 'Setembro 2024',
+    title: 'Festival de Inverno de Meruoca',
+    category: 'Festival / Música',
+    image: '/assets/imgs/festival-inverno.jpg',
+    description: 'Cobertura oficial do renomado Festival de Inverno de Meruoca. Registros de grandes shows, oficinas culturais e a atmosfera única de um dos festivais mais importantes do calendário cultural cearense.',
+    date: 'Julho 2024',
     location: 'Meruoca, CE',
-    tags: ['Institucional', 'Turismo', 'Governo']
+    tags: ['Festival', 'Música', 'Turismo']
   },
   {
-    title: 'Festival Cine Ceará',
-    category: 'Cinema / Cobertura',
-    image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&q=80&w=800',
-    description: 'Cobertura oficial e produção de conteúdo para o 33º Cine Ceará - Festival Ibero-americano de Cinema. Registros de homenagens, mostras competitivas e a efervescência cultural de um dos maiores festivais de cinema do país.',
-    date: 'Novembro 2023',
-    location: 'Fortaleza, CE',
-    tags: ['Cinema', 'Festival', 'Cultura']
+    title: 'FQF - Festival de Quadrilhas',
+    category: 'Cultura / Tradição',
+    image: '/assets/imgs/fqf.jpg',
+    description: 'Cobertura vibrante do Festival de Quadrilhas, capturando a energia, os figurinos e a coreografia impecável dos grupos juninos. Uma celebração da tradição nordestina em sua forma mais espetacular e emocionante.',
+    date: 'Junho 2024',
+    location: 'Ceará',
+    tags: ['Cultura', 'Junino', 'Evento']
   },
 ];
