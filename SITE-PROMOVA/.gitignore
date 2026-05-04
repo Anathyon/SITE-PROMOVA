@@ -36,3 +36,11 @@ dist-ssr/
 *.sln
 *.sw?
 *.swp
+
+# Firebase
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+pubsub-debug.log*
+ui-debug.log*
+firebase-export*
